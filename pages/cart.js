@@ -79,6 +79,7 @@ export default function Cart(){
     			payload
     		}).then((res)=>{
     			console.log(res.data)
+    			sendOrderPos()
     			clearCart()
     			return toast({
 	              title: '',
@@ -91,6 +92,28 @@ export default function Cart(){
     	}catch(err){
     		console.log(err)
     	}
+    }
+    const sendOrderPos=async()=>{
+    	let today = new Date();
+	    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	    const transid = Math.floor((Math.random() * 100) + 1);
+    	try{
+            await axios.post('https://try-fashion-admin-server.herokuapp.com/api/sendpos',{
+                fname: data.name,
+                lname: data.name,
+                email: data.email,
+                mobile : data.mobile,
+                budget : total,
+                details : "Your order has been made to tryfashion, you will be contacted soon",
+                transid : transid,
+                app_time : time,
+                app_date : '2022-06-23',
+                category : "category",
+                key : "49367f20dbbcd22c5b151cbbf02419af"               
+            })
+        }catch(err){
+            console.log(err)
+        }
     }
     const details={
 		id:data._id,
