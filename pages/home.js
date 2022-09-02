@@ -47,7 +47,7 @@ function Home(){
 					</Flex>
 				</VStack>
 				<VStack mt='10px' bg=''>
-					<Text fontSize='28px' m='0'>Mens' Collection</Text>
+					<Text fontSize='28px' m='0'>Mens`&apos;` Collection</Text>
 					<Flex flexWrap='wrap' justify='space-around' w='100vw'>
 						{mencollection?.map((item)=>{
 							return(
