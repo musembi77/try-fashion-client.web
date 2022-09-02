@@ -104,7 +104,7 @@ export default function Cart(){
                 email: data.email,
                 mobile : data.mobile,
                 budget : total,
-                details : "Your order has been made to tryfashion, you will be contacted soon",
+                details : "Your order has been made to tryfashion, you will be contacted soon,or contact us",
                 transid : transid,
                 app_time : time,
                 app_date : '2022-06-23',
