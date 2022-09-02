@@ -144,15 +144,15 @@ const ProductModal=({isOpen,onClose,token,onOpen,item,email,setismodalvisible,is
 		       			<Carousel autoplay className={styles.productmodalimagecontainer} >
 		       						{imagesarr?.map((image)=>{
 										return(
-											<Image objectFit='cover' w='100%' m="0" h='400px' alt='Photo' src={image}/>
+											<Image key={image.id} objectFit='cover' w='100%' m="0" h='400px' alt='Photo' src={image}/>
 										)
 									})}
 									
 			            </Carousel>
 			            <Text fontFamily='Vilane Bold' fontSize='24px' mb='0'>{item.name}</Text>
 			            <Text mb='0' fontSize='20px'>KES {item.price}</Text>
-			            <Text >Sizes : {sizesarr?.map((sizesitem)=>{return(<Button w='20px' m='0 2px' onClick={(()=>{setSize(sizesitem)})}>{sizesitem}</Button>)})} </Text>
-						<Text >Color : {colorsarr?.map((colorsitem)=>{return(<Button w='' m='1px 2px' onClick={(()=>{setColor(colorsitem)})}>{colorsitem}</Button>)})} </Text>
+			            <Text >Sizes : {sizesarr?.map((sizesitem)=>{return(<Button key={sizesitem.id} w='20px' m='0 2px' onClick={(()=>{setSize(sizesitem)})}>{sizesitem}</Button>)})} </Text>
+						<Text >Color : {colorsarr?.map((colorsitem)=>{return(<Button key={colorsitem.id} w='' m='1px 2px' onClick={(()=>{setColor(colorsitem)})}>{colorsitem}</Button>)})} </Text>
 			            <Text  fontSize='18px' mb='0'>Description</Text>
 						<Text  w='100%' mb='0' flexWrap='wrap'>{item?.description}
 						</Text> 
@@ -163,7 +163,7 @@ const ProductModal=({isOpen,onClose,token,onOpen,item,email,setismodalvisible,is
 						</Flex>
 			            <Button bg='#000' color='#fff' borderRadius='0' onClick={AddtoCart}>A d d  t o  C a r t</Button>
 			            
-			            <Text mb='0' cursor='pointer' onClick={(()=>{window.open(`/product/${item._id}`, '_blank');})}>View full details >></Text>
+			            <Text mb='0' cursor='pointer' onClick={(()=>{window.open(`/product/${item._id}`, '_blank');})}>View full details </Text>
 		       		</Flex>
 		          </ModalBody>
 		        </ModalContent>

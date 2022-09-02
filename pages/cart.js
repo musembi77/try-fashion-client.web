@@ -163,7 +163,7 @@ export default function Cart(){
 
 						{pay.map((item)=>{
 							return(
-								<Button mr='1' mb='2' borderRadius='0' bg={item.bg}>
+								<Button key={item.id} mr='1' mb='2' borderRadius='0' bg={item.bg}>
 								{item.icon }{item.name}
 								</Button>
 							)

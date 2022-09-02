@@ -162,7 +162,7 @@ export default function Product(){
 						<Carousel autoplay >
 								{imagesarr?.map((image)=>{
 									return(
-										<Image objectFit='cover' className={styles.ProductViewMainImage} alt='Photo' src={image}/>
+										<Image key={image.id} objectFit='cover' className={styles.ProductViewMainImage} alt='Photo' src={image}/>
 									)
 								})}
 		                </Carousel>
@@ -171,8 +171,8 @@ export default function Product(){
 				<Flex className={styles.productinfo} direction='column'>
 					<Text fontSize='28px' mb='0'>{data?.name}</Text>
 					<Text fontSize='20px'>KES {data?.price}</Text>
-					<Text >Sizes : {sizesarr?.map((sizesitem)=>{return(<Button w='20px' m='0 2px' onClick={(()=>{setSize(sizesitem)})}>{sizesitem}</Button>)})} </Text>
-					<Text >Color : {colorsarr?.map((colorsitem)=>{return(<Button w='' m='1px 2px' onClick={(()=>{setColor(colorsitem)})}>{colorsitem}</Button>)})} </Text>
+					<Text >Sizes : {sizesarr?.map((sizesitem)=>{return(<Button key={sizesitem.id} w='20px' m='0 2px' onClick={(()=>{setSize(sizesitem)})}>{sizesitem}</Button>)})} </Text>
+					<Text >Color : {colorsarr?.map((colorsitem)=>{return(<Button key={colorsitem.id} w='' m='1px 2px' onClick={(()=>{setColor(colorsitem)})}>{colorsitem}</Button>)})} </Text>
 					<Text  fontSize='18px' mb='0'>Description</Text>
 					<Text  w='100%' flexWrap='wrap'>{data?.description}
 					</Text> 
@@ -234,7 +234,7 @@ export default function Product(){
 							{
 								recommendeddata?.slice(0,4).map((item)=>{
 									return(
-										<Recommend item={item}/>
+										<Recommend key={item.id} item={item}/>
 									)
 								})
 							}

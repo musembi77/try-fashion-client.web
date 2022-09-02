@@ -103,9 +103,9 @@ export default function Profile(){
 				{
 					favorites.map((item)=>{
 						return(
-							<StyledDiv>
-                    <Favourites />
-                </StyledDiv>
+							<StyledDiv key={item.id}>
+			                    <Favourites />
+			                </StyledDiv>
 						)
 					})
 				}

@@ -111,7 +111,7 @@ const MenuSideBar=({id,isloggedin,cookies})=>{
 						<>
 						{data?.slice(0,4).map((item)=>{
 							return(
-								<QueryResult item={item}/>
+								<QueryResult key={item.id} item={item}/>
 							)
 						})}
 						</>
