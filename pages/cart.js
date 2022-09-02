@@ -52,9 +52,13 @@ export default function Cart(){
 	    		console.log(res.data)
 	    		setcartarr(res.data)
 	    		//console.log(cartarr)
+	    		if(res.data.length !== 0){
 	    		let sum = res.data?.map((item)=>{return item.price})
 	        		console.log(sum.reduce((a, b) => a + b))
 	        		settotal(sum.reduce((a, b) => a + b))
+	        	}else{
+	        		settotal(0)
+	        	}
 	    		
 	    	})
     	}catch(err){
