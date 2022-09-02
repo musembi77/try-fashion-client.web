@@ -32,7 +32,7 @@ export default function Cart(){
 		            });
 
 	            }
-	            await axios.post('http://localhost:5000/api/getuser',{
+	            await axios.post('https://try-fashion-admin-server.herokuapp.com/api/getuser',{
 	                token
 	            }).then((res)=>{
 	                //console.log(res.data)
@@ -46,7 +46,7 @@ export default function Cart(){
 	    }
     const getCart=async()=>{
     	try{
-    		await axios.post('http://localhost:5000/api/getcart',{
+    		await axios.post('https://try-fashion-admin-server.herokuapp.com/api/getcart',{
 	    		token
 	    	}).then((res)=>{
 	    		console.log(res.data)
@@ -75,7 +75,7 @@ export default function Cart(){
     const createOrder=async()=>{
     	console.log(payload)
     	try{
-    		await axios.post('http://localhost:5000/api/createorder',{
+    		await axios.post('https://try-fashion-admin-server.herokuapp.com/api/createorder',{
     			payload
     		}).then((res)=>{
     			console.log(res.data)
@@ -98,7 +98,7 @@ export default function Cart(){
 	}
     const clearCart=async()=>{
     	try{
-			await axios.post("http://localhost:5000/api/clearcart",
+			await axios.post("https://try-fashion-admin-server.herokuapp.com/api/clearcart",
 				{details}
 			).then((res)=>{
 				console.log(res.data)
@@ -198,7 +198,7 @@ const Item=({item,token})=>{
 	const id = item?.prodctId
 	const getProduct=async()=>{
 		try{
-			await axios.post("http://localhost:5000/api/getproduct",
+			await axios.post("https://try-fashion-admin-server.herokuapp.com/api/getproduct",
 				{id}
 			).then((res)=>{
 				//console.log(res.data)
@@ -221,7 +221,7 @@ const Item=({item,token})=>{
 	}
 	const removeProduct=async()=>{
 		try{
-			await axios.post("http://localhost:5000/api/deleteitem",
+			await axios.post("https://try-fashion-admin-server.herokuapp.com/api/deleteitem",
 				{details}
 			).then((res)=>{
 				//console.log(res.data)

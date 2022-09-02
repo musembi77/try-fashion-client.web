@@ -58,7 +58,7 @@ const SignUp=()=>{
 
   const handleRegister=()=>{
     try{
-      axios.post('http://localhost:5000/api/register',{user})
+      axios.post('https://try-fashion-admin-server.herokuapp.com/api/register',{user})
       .then((res)=>{
         
         if(res.status === 200){

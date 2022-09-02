@@ -32,7 +32,7 @@ export default function Product(){
 	const getProduct=async()=>{
 		setisfetching(true)
 		try{
-			await axios.post("http://localhost:5000/api/getproduct",
+			await axios.post("https://try-fashion-admin-server.herokuapp.com/api/getproduct",
 				{id}
 			).then((res)=>{
 				console.log(res.data)
@@ -107,7 +107,7 @@ export default function Product(){
             });
 		}
 		try{
-			axios.post("http://localhost:5000/api/addtocart",{
+			axios.post("https://try-fashion-admin-server.herokuapp.com/api/addtocart",{
 				product
 			}).then((res)=>{
 				console.log(res.data)
@@ -130,7 +130,7 @@ export default function Product(){
 //https://keja--app.herokuapp.com
     const getRecommendProducts=async(query)=>{
         try{
-            await axios.post('http://localhost:5000/api/recommendproducts',{
+            await axios.post('https://try-fashion-admin-server.herokuapp.com/api/recommendproducts',{
                 param
             }).then((res)=>{
                 console.log(res.data)

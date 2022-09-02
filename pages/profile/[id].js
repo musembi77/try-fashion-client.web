@@ -23,7 +23,7 @@ export default function Profile(){
                 router.push('/')
                 return console.log('no token found, please sign in')
             }
-            await axios.post('http://localhost:5000/api/getuser',{
+            await axios.post('https://try-fashion-admin-server.herokuapp.com/api/getuser',{
                 token
             }).then((res)=>{
                 console.log(res.data)
@@ -41,7 +41,7 @@ export default function Profile(){
                 router.push('/')
                 return console.log('no token found, please sign in')
             }
-            await axios.post('http://localhost:5000/api/deleteuser',{
+            await axios.post('https://try-fashion-admin-server.herokuapp.com/api/deleteuser',{
                 token
             }).then((res)=>{
                 console.log(res.data)

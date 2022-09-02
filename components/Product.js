@@ -115,7 +115,7 @@ const ProductModal=({isOpen,onClose,token,onOpen,item,email,setismodalvisible,is
             });
 		}
 		try{
-			axios.post("http://localhost:5000/api/addtocart",{
+			axios.post("https://try-fashion-admin-server.herokuapp.com/api/addtocart",{
 				product
 			}).then((res)=>{
 				console.log(res.data)

@@ -71,7 +71,7 @@ const MenuSideBar=({id,isloggedin,cookies})=>{
 	const getProducts=async(e)=>{
 		e.preventDefault()
 		try{
-			await axios.post('http://localhost:5000/api/getproducts',{
+			await axios.post('https://try-fashion-admin-server.herokuapp.com/api/getproducts',{
 				query
 			}).then((res)=>{
 				console.log(res.data)
