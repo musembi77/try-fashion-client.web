@@ -8,12 +8,13 @@ import styles from '../styles/Home.module.css'
 import axios from 'axios'
 import { useRouter } from 'next/router';
 import Cookies from 'universal-cookie';
+import jwt_decode from "jwt-decode";
 
 export default function Cart(){
 	const [data,setdata]=useState('');
 	const [cartarr,setcartarr]=useState('');
 	const [total,settotal]=useState(0);
-
+	const [email,setemail]=useState('')
 	const router = useRouter();
 	const toast = useToast();
     const cookies = new Cookies();
@@ -45,25 +46,40 @@ export default function Cart(){
 	        }
 	    }
     const getCart=async()=>{
-    	try{
-    		await axios.post('https://try-fashion-admin-server.herokuapp.com/api/getcart',{
-	    		token
-	    	}).then((res)=>{
-	    		console.log(res.data)
-	    		setcartarr(res.data)
-	    		//console.log(cartarr)
-	    		if(res.data.length !== 0){
-	    		let sum = res.data?.map((item)=>{return item.price})
-	        		console.log(sum.reduce((a, b) => a + b))
-	        		settotal(sum.reduce((a, b) => a + b))
-	        	}else{
-	        		settotal(0)
-	        	}
-	    		
-	    	})
-    	}catch(err){
-    		console.log(err)
-    	}
+    	let decoded = jwt_decode(token);
+    	const email = decoded.email
+    	console.log(email)
+    	if(email){
+	    	try{
+	    		await axios.post('http://localhost:5000/api/getcart',{
+		    		email
+		    	}).then((res)=>{
+		    		console.log(res.data)
+		    		
+		        		setcartarr(res.data)
+		    		console.log(cartarr)
+		    		if(res.data.length !== 0){
+		    			setcartarr(res.data)
+		    			let sum = res.data?.map((item)=>{return item?.price})
+		        		console.log(sum?.reduce((a, b) => a + b))
+		        		settotal(sum?.reduce((a, b) => a + b))
+		        	}else{
+		        		settotal(0)
+		        	}
+		    	})
+	    	}catch(err){
+	    		console.log(err)
+	    	}
+	    }else{
+		    router.push('/')
+		    return toast({
+		              title: '',
+		              description: 'we could not access your cart at the moment , kindly sign in again.',
+		              status: 'error',
+		              duration: 9000,
+		              isClosable: true,
+		            });
+		}
     }
     useEffect(()=>{
         getUser()
@@ -146,13 +162,15 @@ export default function Cart(){
 						<Divider />
 						{cartarr?.length === 0 ? 
 							<Flex w='100%' h='100%' justify='center' align='center'>
-							<Text>No items in your cart</Text>
+								<Text>No items in your cart</Text>
 							</Flex>
 							:
 						<>
-						{cartarr?.map((item)=>{
+						{cartarr?.map((item,index)=>{
 							return(
-								<Item key={item._id} item={item} token={token}/>
+								<div key={index}>
+								<Item item={item} token={token}/>
+								</div>
 							)
 						})}
 						</>
@@ -190,12 +208,12 @@ export default function Cart(){
 
 						{pay.map((item)=>{
 							return(
-								<Button key={item.id} mr='1' mb='2' borderRadius='0' bg={item.bg}>
+								<Button key={item.id} margin='5px' borderRadius='0' bg={item.bg}>
 								{item.icon }{item.name}
 								</Button>
 							)
 						})}
-						<Button mr='1' mb='2' borderRadius='0' bg='#000000' color='#fff' onClick={createOrder}> CheckOut</Button>
+						<Button margin='5px' borderRadius='0' bg='#000000' color='#fff' onClick={createOrder}> CheckOut</Button>
 					</Flex>
 					
 				</Flex>

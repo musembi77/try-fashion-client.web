@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { Flex,Text,Heading,Divider,Stack,Input,HStack,VStack,Button } from '@chakra-ui/react'
+import { Flex,Text,Heading,Divider,Stack,Input,HStack,VStack,Button,Box } from '@chakra-ui/react'
 import {Menu,ShoppingBagOutlined,Logout,AccountCircle,Close,Search} from '@mui/icons-material';
 import {useRouter} from 'next/router'
 import Cookies from 'universal-cookie';
@@ -38,7 +38,7 @@ function Header (){
 				<Flex gap='2' alignItems='center'>
 					<ShoppingBagOutlined onClick={(()=>{router.push('/cart')})}/>
 					{isloggedin ? 
-						<Text mb='0' onClick={(()=>{router.push('/profile')})}>Account</Text>
+						<Text mb='0' onClick={(()=>{router.push(`/profile/${id}`)})}>Account</Text>
 						:
 						<Text mb='0' onClick={(()=>{router.push('/register')})}>Sign In</Text>
 					}					
@@ -101,11 +101,16 @@ const MenuSideBar=({id,isloggedin,cookies})=>{
 	]
 	
 	return(
-			<Stack justify='space-between' p='2' w='55vw' h='90vh' bg='rgb(255,255,255)' position='absolute' top='50px' right='5px' zIndex='2' >
+			<Stack justify='space-between' p='2' w='60vw' h='90vh' bg='rgb(255,255,255)' position='absolute' top='50px' right='5px' zIndex='2' >
 				<Flex mt='3' direction='column' gap='2'>
-					<form onSubmit={getProducts}>
-					<Input placeholder='search items by name ' variant='unflushed' bg='#e5e5e5' onChange={((e)=>{setname(e.target.value)})} type='text'/>
-					</form>
+					
+						<form onSubmit={getProducts}>
+						<Flex align='center' bg='#e5e5e5'>
+							<Input placeholder='search items by name ' variant='unflushed' bg='#e5e5e5' onChange={((e)=>{setname(e.target.value)})} type='text'/>
+							<Search onClick={getProducts} style={{padding:'5px',width:'40px',backgroundColor:'grey',height:'40px'}}/>
+							</Flex>
+						</form>
+					
 					<Divider />
 					{data.length !== 0  && name !== ''? 
 						<>

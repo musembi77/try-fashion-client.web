@@ -72,7 +72,7 @@ export default function Product(){
     let token = cookies.get('usertoken');
     const reviews = data?.reviews
 
-	const AddtoCart=()=>{
+	const AddtoCart=async()=>{
 		console.log(product)
 		if(!token || token === null){
                 return toast({
@@ -107,21 +107,23 @@ export default function Product(){
             });
 		}
 		try{
-			axios.post("https://try-fashion-admin-server.herokuapp.com/api/addtocart",{
+			console.log(product)
+			await axios.post("https://try-fashion-admin-server.herokuapp.com/api/addtocart",{
 				product
 			}).then((res)=>{
 				console.log(res.data)
+				return toast({
+	              title: '',
+	              description: `${product.qty} ${data.name} has been succesfully add to your cart`,
+	              status: 'success',
+	              duration: 9000,
+	              isClosable: true,
+	            });
 			})
 		}catch(err){
 			console.error
 		}
-		return toast({
-              title: '',
-              description: `${product.qty} ${data.name} has been succesfully add to your cart`,
-              status: 'success',
-              duration: 9000,
-              isClosable: true,
-            });
+		
 	}
 	const param = {
         category:data?.category,

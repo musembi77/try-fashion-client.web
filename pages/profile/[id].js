@@ -98,19 +98,7 @@ export default function Profile(){
 					</>
 			}
 			</Flex>
-			<Text fontFamily='Vilane Bold' fontSize='20px' textDecoration='underline solid #000 1.5px'>Favourites</Text>
-			<StyledSlider className={styles.scrollbar}>
-				{
-					favorites.map((item)=>{
-						return(
-							<StyledDiv key={item.id}>
-			                    <Favourites />
-			                </StyledDiv>
-						)
-					})
-				}
-				
-            </StyledSlider>	
+			
 			<Text fontFamily='Vilane Bold' fontSize='20px' textDecoration='underline solid #000 1.5px'>Security</Text>
 			<Input placeholder="password" type='password' value={data?.password}/>
 			<Button onClick={deleteUser} bg='red' color='#fff'>Delete Account</Button>

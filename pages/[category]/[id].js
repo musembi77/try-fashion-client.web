@@ -108,22 +108,7 @@ export default function Category(){
 				    <BreadcrumbLink >{router.query.id === "" ? subcategory : router.query.id }</BreadcrumbLink>
 				  </BreadcrumbItem>
 				</Breadcrumb>
-				<HStack>
-					<Select placeholder='Sort'>
-						<option>price low to high</option>
-						<option>price high to low</option>
-						<option>A - Z</option>
-						<option>Z - A</option>
-					</Select>
-					<Select placeholder='Size'>
-						<option>small</option>
-						<option>medium</option>
-						<option>large</option>
-						<option>xlarge</option>
-						<option>xxlarge</option>
-					</Select>
-				</HStack>
-					<Flex flexWrap='wrap' justify='space-around'>
+					<Flex flexWrap='wrap' justify='space-around' mt='3'>
 					{isfetching ? 
 						<Center h='80vh'>
 							<Loading />
@@ -131,7 +116,10 @@ export default function Category(){
 					:
 					<>
 						{data.length === 0 ? 
-							<Text>We do not have any items you are looking for at the moment.</Text>
+							<Center h='80vh'>
+								<Text>We do not have any items you are looking for at the moment.</Text>
+							</Center>
+							
 							:
 						<>
 							{data.map((item)=>{
