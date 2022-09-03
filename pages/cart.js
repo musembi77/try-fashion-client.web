@@ -9,6 +9,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router';
 import Cookies from 'universal-cookie';
 import jwt_decode from "jwt-decode";
+import PayPal from '../components/PayPal.js'
 
 export default function Cart(){
 	const [data,setdata]=useState('');
@@ -51,7 +52,7 @@ export default function Cart(){
     	console.log(email)
     	if(email){
 	    	try{
-	    		await axios.post('http://localhost:5000/api/getcart',{
+	    		await axios.post('https://try-fashion-admin-server.herokuapp.com/api/getcart',{
 		    		email
 		    	}).then((res)=>{
 		    		console.log(res.data)
@@ -208,11 +209,14 @@ export default function Cart(){
 
 						{pay.map((item)=>{
 							return(
-								<Button key={item.id} margin='5px' borderRadius='0' bg={item.bg}>
+								<Button key={item.id} margin='5px' borderRadius='0' bg={item.bg} onClick={(()=>{router.push('/paymentredirect')})}>
 								{item.icon }{item.name}
 								</Button>
 							)
 						})}
+						<Flex margin='5px' borderRadius='0' bg={'#3b7bbf'} p='3' align='center' justify='center'>
+								<PayPal total={total}/>
+						</Flex>
 						<Button margin='5px' borderRadius='0' bg='#000000' color='#fff' onClick={createOrder}> CheckOut</Button>
 					</Flex>
 					
@@ -227,9 +231,6 @@ const pay=[
 	 },
 	{name:"C a r d",
 	 bg:"grey",
-	 },
-	 {name:"P a y p a l",
-	 bg:"#3b7bbf",
 	 },
 	 {name:"Crypto",
 	 bg:"#f7931a",

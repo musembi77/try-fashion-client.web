@@ -28,6 +28,7 @@ export default function Product(){
 	console.log(id)
 	const [data,setdata]=useState('')
 	const [recommendeddata,setRecommendeddata]=useState('')
+	const [isadding,setisadding]=useState(false)
 
 	const getProduct=async()=>{
 		setisfetching(true)
@@ -73,6 +74,7 @@ export default function Product(){
     const reviews = data?.reviews
 
 	const AddtoCart=async()=>{
+		setisadding(true)
 		console.log(product)
 		if(!token || token === null){
                 return toast({
@@ -112,6 +114,7 @@ export default function Product(){
 				product
 			}).then((res)=>{
 				console.log(res.data)
+				setisadding(false)
 				return toast({
 	              title: '',
 	              description: `${product.qty} ${data.name} has been succesfully add to your cart`,
@@ -185,7 +188,11 @@ export default function Product(){
 					</Flex>
 					<Flex gap=''>
 						<Input w='60px' type='number' min='0' value={qty} onChange={((e)=>{setQty(e.target.value)})}/> 
-						<Button flex='1' bg='#000' color='#fff' borderRadius='0' onClick={AddtoCart}>Add to Cart</Button>
+						{isadding?
+						<Button flex='1' bg='#000' color='#fff' borderRadius='0' isLoading
+    loadingText='Adding to cart'>Add to Cart</Button>
+    :
+    <Button flex='1' bg='#000' color='#fff' borderRadius='0' onClick={AddtoCart} >Add to Cart</Button>}
 					</Flex>
 					
 				</Flex>
